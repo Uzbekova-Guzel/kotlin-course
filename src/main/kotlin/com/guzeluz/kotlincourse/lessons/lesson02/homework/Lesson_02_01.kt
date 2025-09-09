@@ -1,3 +1,5 @@
+package com.guzeluz.kotlincourse.lessons.lesson02.homework
+
 fun sum(a: Int, b: Int): Int {
     val result = a + b
     return result
