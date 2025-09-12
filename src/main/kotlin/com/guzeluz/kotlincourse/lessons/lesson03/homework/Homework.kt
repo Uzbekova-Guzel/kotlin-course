@@ -13,11 +13,7 @@ package com.guzeluz.kotlincourse.lessons.lesson03.homework
     private val detailedBudgetForEvent: String = "A detailed budget for the event, including equipment, catering and other operating expenses."
 
 //5. Количество участников
-    var numberOfParticipants: Int = 150
-        set(value) {
-            require(value >= 0) { "The number of participants cannot be negative!" }
-            field = value
-        }
+    var numberOfParticipants: Int? = 0
 
 //6. Длительность хакатона
     val durationInDays: Int = 5
@@ -41,16 +37,16 @@ package com.guzeluz.kotlincourse.lessons.lesson03.homework
     }
 
 //12. Информация о транспортировке оборудования, распределении ресурсов и координации между различными командами поддержки.
-    lateinit var supportInfo: String
+    private val supportInfo: String = "Logistic info"
 
 //13. Количество команд
-    var numberOfTeams: Int = 50
+    var numberOfTeams: Int = 0
 
 //14. Перечень задач
-    private val listOfTasks: String = "Launch a rocket with a dog into space, contact other planets"
+    val listOfTasks: String = "Launch a rocket with a dog into space, contact other planets"
 
 //15. План эвакуации
-    val evacuationPlan: String = "Launch rescue rockets"
+    var evacuationPlan: String = "Launch rescue rockets"
 
 //16. Список доступного оборудования (всё, что выделено для использования на мероприятии)
     val listOfEquipment: String = "100 rockets, 50 dogs, 1 rabbit"
@@ -65,13 +61,13 @@ package com.guzeluz.kotlincourse.lessons.lesson03.homework
     val backupPlan: String = "Backup plan for failures"
 
 //20. Список экспертов и жюри
-    val listOfExpertsAndJury: String = "Experts, Jury members"
+    var listOfExpertsAndJury: String = "Experts, Jury members"
 
 //21. Политика конфиденциальности
     val privacyPolicy: String = "Privacy policy for participants and visitors"
 
 //22. Приватные отзывы (фидбэк) участников и зрителей для анализа проблем.
-    private var feedbackList: String = ""
+    private lateinit var feedbackList: String
 
 //23. Текущая температура в помещении
     var currentTemperature: Double = 22.5
@@ -116,7 +112,8 @@ package com.guzeluz.kotlincourse.lessons.lesson03.homework
     var isSpecialEquipmentAvailable: Boolean = false
 
 //37. Список партнеров мероприятия
-    val listOfPartners: String = "NASA, SpaceX, Google, Amazon"
+    var listOfPartners: String = "NASA, SpaceX, Google, Amazon"
+    private set
 
 //38. Отчет, включающий фотографии, видео и отзывы, генерируется и становится доступен после завершения мероприятия.
     val eventReport: String by lazy {
