@@ -1,0 +1,48 @@
+(3 + 2 < 6) && (4 * 2 == 8)
+true && true
+true
+
+(10 - 5 >= 5) || (2 * 3 != 6)
+true || false
+true
+
+(8 / 2 == 4) && (7 % 3 != 1)
+true && false
+false
+
+(8 % 4 == 2) || (2 + 2 == 5)
+true || false
+true
+
+((3 + 4) < 8) && (12 / 4 == 4) || (5 % 2 == 1)
+true && false || true
+false || true
+true
+
+((10 - 5) > 3) || (6 * 2 == 12) && !(9 / 3 > 2)
+true || true && false
+true || false
+true
+
+((2 * 5) == 10) && !(7 - 2 < 5) || (8 / 2 != 4)
+true && !false || false
+true && true || false
+true || false
+true
+
+((var a = 4; a-- == 4) || (5 * 2 != 10)) && !(3 + 1 == 4)
+(true || false) && !true
+(true || false) && false
+true && false
+false
+
+(var b = 3; ++b == 3) && (6 / 2 == 3) || !(7 - 2 != 5)
+false && true || !false
+false && true || true
+false || true
+true
+
+(var c = 1; --c != 0) || (4 % 2 == 0) && (5 + 0 == 5)
+false || true && true
+false || true
+true
