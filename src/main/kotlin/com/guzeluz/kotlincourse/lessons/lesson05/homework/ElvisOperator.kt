@@ -24,11 +24,13 @@ fun main() {
     Задача: Рассчитать полную стоимость доставки.
     */
 
-    val deliveryCost: Double? = 45.0
-    val defaultDeliveryCost = 50.0
-    val cargoInsurance = (deliveryCost ?: defaultDeliveryCost) * 0.005
-    val finalDeliveryCost = (deliveryCost ?: defaultDeliveryCost) + cargoInsurance
-    println(finalDeliveryCost)
+    val defaultCost: Double = 50.0
+    val cost: Double? = 20.0 // но может быть null
+    val deliveryCost = 5.0
+    val insuranceCoefficient = 0.005
+    // стоимость страховки
+    val insuranceCost = (cost ?: defaultCost) * insuranceCoefficient
+    val totalCost: Double = deliveryCost + insuranceCost
 
     /*
     Задача 3
