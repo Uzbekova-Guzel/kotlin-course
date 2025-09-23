@@ -119,7 +119,7 @@ fun choosingClothes(temperature: Float) {
         println("оставайся дома!")
     } else if (temperature < 10.0) {
         println("куртка и шапка")
-    } else if (temperature in 10.0..18.0) {
+    } else if (temperature <= 18.0) {
         println("ветровка")
     } else {
         println("футболка и шорты")
@@ -136,7 +136,7 @@ fun choosingClothes(temperature: Float) {
 fun movieByAge(age: Int) {
     val result = when (age) {
         in 0..9 -> "детские"
-        in 10 until 17 -> "подростковые"
+        in 10 until 18 -> "подростковые"
         in 18..Int.MAX_VALUE -> "полный доступ"
         else -> "возраст не может быть отрицательным!"
     }
