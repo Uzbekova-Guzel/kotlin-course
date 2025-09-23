@@ -108,11 +108,77 @@ fun main() {
         counter6++
     }
 
+    getMultiplicationTable()
+    getSum(15)
+    getFactorial(3)
+    getEvenNumberSum(4)
+    buildRectangle()
+    getSumOfEvenOddNumbers()
+}
+
 //    Задачи повышенной сложности
 // 1. Используя вложенный цикл реализовать таблицу умножения
+fun getMultiplicationTable() {
+    for (i in 1..10) {
+        for (j in 1..10) {
+            print(String.format("%4d", i * j))
+        }
+        println()
+    }
+}
+
 // 2. Напишите функцию, которая суммирует числа от 1 до 'arg' с помощью цикла for. 'arg' - целочисленный аргумент функции.
+fun getSum(arg: Int = 10) {
+    var sum = 0
+    for (i in 1..arg) {
+        sum += i
+    }
+    println(sum)
+
+}
+
 // 3. Напишите функцию, которая вычисляет факториал числа 'arg' с использованием цикла while.
+fun getFactorial(arg: Int = 10) {
+    var factorial = 1
+    var count = 1
+    while (count in 1..arg) {
+        factorial *= count
+        count++
+    }
+    println(factorial)
+}
+
 // 4. Напишите функцию, которая находит сумму всех четных чисел от 2 до 'arg', используя цикл while.
+fun getEvenNumberSum(arg: Int = 10) {
+    var count2 = 2
+    var sumEvenNumbers = 0
+    while (count2 in 2..arg) {
+        if (count2 % 2 == 0) sumEvenNumbers += count2
+        count2++
+    }
+    println(sumEvenNumbers)
+}
+
 // 5. Напишите функцию, которая используя вложенные циклы while, выведет заполненный прямоугольник размером 5x3 из символов *.
+fun buildRectangle(width: Int = 5, height: Int = 3) {
+    var i = 1
+    while (i in 1..height) {
+        var j = 1
+        while (j in 1..width) {
+            print('*')
+            j++
+        }
+        println()
+        i++
+    }
+}
+
 // 6. Напишите функцию, которая используя цикл for найдёт суммы чётных и нечётных значений чисел от 1 до arg.
+fun getSumOfEvenOddNumbers(arg: Int = 10) {
+    var evenSum = 0
+    var oddSum = 0
+    for (i in 1..arg) {
+        if (i % 2 == 0) evenSum += i else oddSum += i
+    }
+    println("Sum of even numbers = $evenSum\nSum of odd numbers = $oddSum")
 }
