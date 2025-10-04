@@ -5,7 +5,6 @@ fun main() {
     encrypt("Two")
     decrypt("оКлтни")
     getMultiplicationTable(100, 100)
-
 }
 
 //Задания повышенной сложности
@@ -22,9 +21,9 @@ fun toUpperCase(arg: String) {
     val argListUpperCase = mutableListOf<String>()
     for (word in argList) {
         val first = word[0].uppercase()
-        val rest = word.substring(1).lowercase()
+        val rest = word.substring(1)
+            .lowercase()
         argListUpperCase += "$first$rest"
-
     }
     println(argListUpperCase.joinToString(" "))
 }
@@ -55,7 +54,7 @@ fun encrypt(arg: String) {
 }
 
 fun decrypt(arg: String) {
-    println(swapPairs(arg))
+    println(swapPairs(arg).trimEnd())
 }
 
 /*
@@ -89,6 +88,3 @@ fun getMultiplicationTable(row: Int, column: Int) {
         println()
     }
 }
-
-
-

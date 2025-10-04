@@ -32,7 +32,8 @@ fun getDateAndTime(arg: String) {
 fun disguiseCreditCard(cardNumber: String) = "**** **** **** ${cardNumber.substring(cardNumber.length - 4)}"
 
 //4. Форматирование адреса электронной почты
-fun formatEmail(email: String) = email.replace("@", " [at] ").replace(".", " [dot] ")
+fun formatEmail(email: String) = email.replace("@", " [at] ")
+    .replace(".", " [dot] ")
 
 //5. Извлечение имени файла из пути.
 fun extractFileName(path: String) {
