@@ -210,7 +210,7 @@ fun main() {
 //Вызвать метод с данными, подходящими под каждую из веток
 
 fun checkNumbers(numbers: List<Int>): String {
-    val result = when {
+    return when {
         numbers.isEmpty() -> "Пусто"
         numbers.size < 5 -> "Короткая"
         numbers.first() == 0 -> "Стартовая"
@@ -219,12 +219,11 @@ fun checkNumbers(numbers: List<Int>): String {
         numbers.joinToString()
             .length == 20 -> "Клейкая"
 
-        numbers.max() < -10 -> "Отрицательная"
-        numbers.min() > 1000 -> "Положительная"
-        numbers.contains(3) && numbers.contains(4) -> "Пи***тая"
+        (numbers.maxOrNull() ?: 0) < -10 -> "Отрицательная"
+        (numbers.minOrNull() ?: 0) > 1000 -> "Положительная"
+        numbers.contains(3) && numbers.contains(14) -> "Пи***тая"
         else -> "Уникальная"
     }
-    return result
 }
 
 
@@ -253,8 +252,9 @@ fun analiseScores(numbers: List<Int>): List<Int> {
 //Цель: Привести все слова в списке к нижнему регистру,
 // сгруппировать в каталог по первой букве используя метод groupBy
 fun createCatalog(strings: List<String>): Map<Char, List<String>> {
-    val lowercased = strings.map { it.lowercase() }
-    return lowercased.groupBy { it.first() }
+    return strings
+        .map { it.lowercase() }
+        .groupBy { it.first() }
 }
 
 //    Задание 27. Подсчёт средней длины слов в списке.
@@ -265,12 +265,9 @@ fun createCatalog(strings: List<String>): Map<Char, List<String>> {
 // Вернуть форматированный текст с двумя знаками после запятой,
 // используя функцию format и подходящий шаблон.
 fun getWordLengthAverage(strings: List<String>): String {
-    val stringsLength = mutableListOf<Int>()
-    strings.forEach {
-        stringsLength.add(it.length)
-    }
-    val result = stringsLength.average()
-    return result.toString().format() //ToDo
+    val stringsLength = strings.map { it.length }
+    val average = stringsLength.average()
+    return String.format("Average word length: %.2f", average)
 }
 
 
@@ -281,11 +278,10 @@ fun getWordLengthAverage(strings: List<String>): String {
 //Цель: Отобрать уникальные числа, отсортировать по убыванию и
 // сгруппировать по четности (“четные” и “нечетные”).
 fun getNumbersCategory(numbers: List<Int>): Map<String, List<Int>> {
-    val result = numbers
+    return numbers
         .distinct()
         .sortedDescending()
         .groupBy { if (it % 2 == 0) "Четные" else "Нечетные" }
-    return result
 }
 
 //Задание 29: Поиск первого подходящего элемента.
@@ -299,7 +295,9 @@ fun getNumbersCategory(numbers: List<Int>): Map<String, List<Int>> {
 // либо null если значения не нашлось.
 
 fun searchElement(numbers: List<Int?>, number: Int): Int? {
-    return numbers.getOrNull() { it < number } //ToDo
+    return numbers
+        .filterNotNull()
+        .firstOrNull { it > number }
 }
 
 
