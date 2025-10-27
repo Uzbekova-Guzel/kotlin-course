@@ -54,19 +54,19 @@ fun main() {
         "https://stimmax.ru/course/kotlin-dlya-nachinayuschikh/2025-09-02" to "200 OK",
         "https://stimmax.ru/history/1223/read" to "200 OK"
     )
-    println(webAutotestReport1.getOrElse("google.com") { "Maybe it didn't check" })
+    println(webAutotestReport1.getOrDefault("google.com", "Maybe it didn't check"))
 
 //    9. Из словаря, содержащего конфигурации тестового окружения
 //    (ключ — название параметра конфигурации, значение - сама конфигурация),
 //    получите значение для "browserType". Ответ не может быть null.
     val testConfiguration =
         mapOf("OS" to "Linux", "OS version" to "3.10", "browserType" to "Firefox", "testLabel" to "Night")
-    println(testConfiguration.getOrDefault("browserType", "Google Chrome"))
+    println(testConfiguration.getValue("browserType"))
 
 //    10. Создайте копию неизменяемого словаря с данными
 //    о версиях тестируемого ПО, добавив новую версию.
-    val versions = mapOf("Android" to 3.4, "IOS" to 2.10)
-    val mutableVersions = versions.toMutableMap()
+    val versions = mapOf("Android 14" to 3.4, "IOS" to 2.10)
+    val mutableVersions = versions + ("Android 11" to 4.4)
 
 //    11. Используя словарь с настройками тестирования
 //    для различных мобильных устройств
@@ -128,9 +128,7 @@ fun main() {
 
     val testConfiguration1 =
         mapOf("OS" to "Linux", "OS version" to "3.10", "browserType" to "Firefox", "testLabel" to "Night")
-    val testConfiguration2 = testConfiguration1.toMutableMap()
-    testConfiguration2.remove("browserType")
-    testConfiguration2.remove("testLabel")
+    val testConfiguration2 = testConfiguration1 - listOf("browserType", "testLabel")
 
 //    20. Создайте отчет о тестировании,
 //    преобразовав словарь с результатами тестирования
@@ -157,7 +155,7 @@ fun main() {
 //    (ключи - строковая версия, значения - дробное число времени ответа сервера)
 //    увеличьте каждую оценку на 10%, чтобы учесть новые условия тестирования.
     val perfomanceScore = mapOf("1.101" to 1.22, "2.0" to 0.45, "2.201" to 0.23)
-    println(perfomanceScore.mapValues { it.value * 1.1 })
+    println(perfomanceScore.mapValues { "%2f".format(it.value * 1.1) })
 
 //    24. Проверьте, пуст ли словарь с ошибками компиляции тестов.
     val compilationError = mapOf<String, String>()
