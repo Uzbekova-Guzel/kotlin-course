@@ -85,26 +85,26 @@ interface Rechargeable {
 // используя эти интерфейсы. Реализовывать методы не нужно.
 
 //Холодильник
-abstract class Fridge : Powerable, Openable, TemperatureRegulatable
+abstract class Fridge : Powerable, Openable, TemperatureRegulatable, Drainable
 
 //Стиральная машина
-abstract class WashingMachine : Powerable, Openable, Programmable, Cleanable
+abstract class WashingMachine : Powerable, Openable, Programmable, Drainable, Cleanable
 
 //Умная лампа
-abstract class SmartLamp : Timable, BatteryOperated, LightEmitting, Rechargeable
+abstract class SmartLamp : Timable, LightEmitting, Rechargeable
 
 //Электронные часы
-abstract class ElectronicClock : Timable, BatteryOperated, SoundEmitting, Programmable, Rechargeable
+abstract class ElectronicWatch : Timable, BatteryOperated, SoundEmitting, Programmable
 
 //Робот-пылесос
 abstract class RobotVacuumCleaner : Powerable, Openable, WaterContainer, WaterConnection, AutomaticShutdown, Drainable,
-    Timable, BatteryOperated, Programmable, Movable, Cleanable, Rechargeable
+    Timable, Programmable, Movable, Cleanable, Rechargeable
 
 //Механические часы
-abstract class MechanicalClock : Timable, Mechanical, SoundEmitting
+abstract class MechanicalWatch : Timable, Mechanical, SoundEmitting, BatteryOperated
 
 //Фонарик
-abstract class Flashlight : LightEmitting, BatteryOperated, Rechargeable
+abstract class Flashlight : Powerable, LightEmitting, BatteryOperated
 
 //Кофемашина
 abstract class CoffeeMachine : Powerable, Openable, WaterContainer, AutomaticShutdown, Programmable, Cleanable
