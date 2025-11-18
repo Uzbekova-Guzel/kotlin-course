@@ -64,10 +64,11 @@ fun Number.within(other: Number, deviation: Number): Boolean {
  вычитанием размера сдвига к char символу.
  */
 fun String.encrypt(base: Int): String {
-    return map {it + base}.joinToString("")
+    return map { it + base }.joinToString("")
 }
+
 fun String.decrypt(base: Int): String {
-    return map {it - base}.joinToString("")
+    return map { it - base }.joinToString("")
 }
 
 /*6. Многие уже знают любимую игру в Твиттере - собирание разных слов из букв через ответы
@@ -77,7 +78,14 @@ fun String.decrypt(base: Int): String {
 имя автора и букву под ним.
 Вот ссылка на референс: https://x.com/SadNSober_/status/1370280031616897026
  */
-
+fun String.printLetter(names: List<String>) {
+    var count = 0
+    for (i in this) {
+        println(names[count++])
+        println(i.uppercase())
+        if (count >= names.size) count = 0
+    }
+}
 
 fun main() {
     println(arrayOf(1, 2, 3, 4, 5).fun1())
@@ -95,7 +103,9 @@ fun main() {
     println(1.within(1.64, 4.35f))
 
     val str = "Hello, World!"
-    println(str.encrypt(2))
-    println(str.decrypt(2))
+    val strEnc = str.encrypt(2)
+    println(strEnc)
+    println(strEnc.decrypt(2))
 
+    "Letter".printLetter(listOf("Masha", "Tanya", "Vasya"))
 }
