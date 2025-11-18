@@ -19,9 +19,9 @@ fun Array<Int>.fun1(): Pair<Int?, Int?> {
      и по убыванию, если false (используем функции sort() и sortDescending()
  */
 fun <T : Comparable<T>> MutableList<T>.fun2(bol: Boolean): List<T> {
-    toList()
+    val result = toList()
     if (bol) sort() else sortDescending()
-    return this
+    return result
 }
 
 /*3. Создайте функцию-расширение для nullable словаря с дженериком:
@@ -31,7 +31,7 @@ fun <T : Comparable<T>> MutableList<T>.fun2(bol: Boolean): List<T> {
 Возвращает nullable словарь:
     - из ключей изначального словаря приведённых к строке через toString()
     - значений из nullable дженерика, взятых из изначального ключа-списка
- по индексу из аргумента, если такого индекса нет - значением будет nul
+ по индексу из аргумента, если такого индекса нет - значением будет null
  */
 fun <A> Map<A, List<A>>?.fun3(index: Int): Map<String, A?>? {
     return this?.mapKeys { it.key.toString() }
