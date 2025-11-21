@@ -54,8 +54,7 @@ fun getStringLengthOrZero(arg: Any?): Int {
 если придёт строка, то его нужно преобразовать в число через функцию toDouble() и возвести в квадрат.
  */
 fun Any.toSquare(): Double {
-    return (this as? Int)?.toDouble()?.pow(2)
-        ?: (this as? Double?)?.pow(2)
+    return (this as? Number)?.toDouble()?.pow(2)
         ?: (this as String).toDouble().pow(2)
 }
 
@@ -72,6 +71,11 @@ fun sumIntOrDoubleValues(list: List<Any>): Double {
         else if (it is Double) sum += it
     }
     return sum
+}
+
+fun sumIntOrDoubleValues1(list: List<Any>): Double {
+    return list.filter { it is Int || it is Double }
+        .sumOf { (it as Number).toDouble() }
 }
 
 /*Задача 6
