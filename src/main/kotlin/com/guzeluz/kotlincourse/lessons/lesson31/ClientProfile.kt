@@ -4,7 +4,7 @@ import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
 
-class ClientProfile(val id: String, birthday: String = "1986.05.23") {
+class ClientProfile(birthday: String = "1986.05.23") {
 
     private var lastActivity = LocalDate.of(2000, 1, 1)
     private var purchaseNumber = 0

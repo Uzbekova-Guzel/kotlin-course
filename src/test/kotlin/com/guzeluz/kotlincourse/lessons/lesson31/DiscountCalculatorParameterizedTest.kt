@@ -3,7 +3,18 @@ package com.guzeluz.kotlincourse.lessons.lesson31
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ValueSource
 import kotlin.test.assertFailsWith
+
+//@JvmStatic - это специальная аннотация для обеспечения совместимости с Java классами.
+// JUnit при использовании аннотации @MethodSource будет искать статический метод по его названию в тестовом классе.
+// В Java статические методы обозначаются модификатором static. Чтобы нужный нам метод правильно скомпилировался, требуется указать эту аннотацию.
+//
+//Другие источники аргументов:
+//@ValueSource позволяет передать список аргументов для их проверки в тесте, если для теста требуется только один аргумент.
+//@CsvSource позволяет указать входные данные в формате CSV.
+//@EnumSource позволяет указать тестовые данные в виде enum.
+//@CsvFileSource позволяет передать путь до csv файла с данными
 
 class DiscountCalculatorParameterizedTest {
     @ParameterizedTest
@@ -26,7 +37,8 @@ class DiscountCalculatorParameterizedTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideInvalidDiscounts")
+//    @MethodSource("provideInvalidDiscounts")
+    @ValueSource(ints = [-1, 101])
     fun `should throw exception for invalid discount percentage`(discountPercentage: Int) {
         assertFailsWith<IllegalArgumentException>("Скидка должна быть от 0 до 100%") {
             calculateDiscountedPrice(100.0, discountPercentage)
