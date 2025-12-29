@@ -1,11 +1,10 @@
 package com.guzeluz.kotlincourse.lessons.lesson30.homework
 
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class InventoryManagerTest {
-    private val inventoryManager = InventoryManager(10)
+    private val inventoryManager = InventoryManager(5)
 
     @Test
     fun getItemCountInEmptyItems() {
@@ -15,8 +14,8 @@ class InventoryManagerTest {
     @Test
     fun getItemCount() {
         with(inventoryManager) {
-            addItem("car", 5)
-            assertEquals(5, getItemCount("car"))
+            addItem("car", 1)
+            assertEquals(1, getItemCount("car"))
         }
     }
 
@@ -27,6 +26,33 @@ class InventoryManagerTest {
             addItem("apartment", 3)
             assertEquals(2, getItemCount("house"))
             assertEquals(3, getItemCount("apartment"))
+        }
+    }
+
+    @Test
+    fun addItem() {
+        with(inventoryManager) {
+            addItem("bike", 2)
+            assertEquals(2, getItemCount("bike"))
+        }
+    }
+
+    @Test
+    fun addSimilarItem() {
+        with(inventoryManager) {
+            addItem("bike", 1)
+            addItem("bike", 2)
+            assertEquals(3, getItemCount("bike"))
+        }
+    }
+
+    @Test
+    fun addExtraCapacityItems() {
+        with(inventoryManager) {
+            addItem("plane", 4)
+            assertThrows(IllegalStateException::class.java) {
+                addItem("plane", 2)
+            }
         }
     }
 }
