@@ -32,7 +32,7 @@ class PhoneNumberFormatterParameterizedTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["6 (922) 941-11-11", "09229411111", "+1 (922) 941-11-11"])
-    fun `should throw exception for invalid areaCode`(
+    fun `should throw exception for invalid first digit`(
         phone: String
     ) {
         assertThrows(IllegalArgumentException::class.java) {
@@ -42,7 +42,7 @@ class PhoneNumberFormatterParameterizedTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["", "123456789", "123456789012", "&^*hfhj"])
-    fun `should throw exception for invalid lengh`(
+    fun `should throw exception for invalid length`(
         phone: String
     ) {
         assertThrows(IllegalArgumentException::class.java) {
