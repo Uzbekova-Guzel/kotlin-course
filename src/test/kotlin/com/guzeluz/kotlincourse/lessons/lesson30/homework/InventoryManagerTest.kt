@@ -55,4 +55,49 @@ class InventoryManagerTest {
             }
         }
     }
+
+    @Test
+    fun addNegativeCountItems() {
+        assertThrows(IllegalStateException::class.java) {
+            inventoryManager.addItem("plane", -2)
+        }
+    }
+
+    @Test
+    fun shouldBeRemovedFully() {
+        with(inventoryManager) {
+            addItem("train", 2)
+            assertTrue(removeItem("train", 2))
+        }
+    }
+
+    @Test
+    fun shouldBeRemovedPartially() {
+        with(inventoryManager) {
+            addItem("train", 2)
+            assertTrue(removeItem("train", 1))
+        }
+    }
+
+    @Test
+    fun shouldNotBeRemoved() {
+        with(inventoryManager) {
+            assertFalse(removeItem("train", 1))
+        }
+    }
+
+    @Test
+    fun shouldNotBeRemovedNegatively() {
+        with(inventoryManager) {
+            addItem("train", 2)
+            assertFalse(removeItem("train", 5))
+        }
+    }
+
+    @Test
+    fun shouldNotBeRemovedNotExistedItem() {
+        with(inventoryManager) {
+            assertFalse(removeItem("track", 3))
+        }
+    }
 }

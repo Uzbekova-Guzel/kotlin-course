@@ -32,10 +32,10 @@ class InventoryManager(private val capacity: Int) {
      */
     fun removeItem(itemName: String, quantity: Int): Boolean {
         val currentQuantity = items[itemName]
-        if (currentQuantity == null || quantity < currentQuantity) {
+        if (currentQuantity != null && quantity <= currentQuantity) {
+            items[itemName] = currentQuantity - quantity
             return true
         }
-        items[itemName] = currentQuantity - quantity
         return false
     }
 
@@ -45,7 +45,7 @@ class InventoryManager(private val capacity: Int) {
      * @throws IllegalStateException в случае, если допустимое количество может быть превышено
      */
     private fun checkCapacity(itemsForAdding: Int) {
-        check(capacity >= items.values.sum() + itemsForAdding) {
+        check(capacity >= (items.values.sum() + itemsForAdding) && itemsForAdding >= 0) {
             "Количество инвентаря не должно превышать $capacity единиц"
         }
     }
