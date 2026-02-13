@@ -71,8 +71,6 @@ IntRange для проверки вхождения в него Step.
  */
 class Step(val number: Int) {
     operator fun rangeTo(other: Step) = number..other.number
-
-    operator fun contains(range: IntRange) = number in range
 }
 
 operator fun IntRange.contains(step: Step) = step.number in this
@@ -82,10 +80,16 @@ operator fun IntRange.contains(step: Step) = step.number in this
 Есть класс Log с полем entries: List<String>.
 Перегрузи оператор +, чтобы при сложении логов записи объединялись в один лог.
  */
-class Log(val entries: List<String>) {
-    operator fun plus(other: Log) = Log(entries + other.entries)
+class Log() {
+    private val entries = mutableListOf<String>()
+    operator fun plus(other: String): Log {
+        entries.add(other)
+        return this
+    }
 
-    override fun toString(): String = entries.toString()
+    fun print() {
+        println(entries.joinToString())
+    }
 }
 
 //Инфиксные функции
@@ -154,9 +158,9 @@ fun main() {
     println(Step(5) in range)
     println(Step(15) in range)
 
-    val log1 = Log(listOf("1"))
-    val log2 = Log(listOf("2"))
-    println(log1 + log2)
+    val log = Log()
+    log + "1" + "2" + "3" + "4"
+    log.print()
 
     val andrew = Person("Andrew")
     andrew says "Hello" and "brothers." or "sisters." and "I believe" and "you" and "can do it" or "can't"
