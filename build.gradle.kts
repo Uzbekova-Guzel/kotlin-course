@@ -17,6 +17,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
     // Добавление движка JUnit Jupiter для запуска тестов
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    implementation("org.hamcrest:hamcrest:2.2")
 }
 
 tasks.test {
